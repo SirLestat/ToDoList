@@ -7,22 +7,21 @@ function App() {
 
   const handleBackground = () => {
     setDarkMode(!darkMode ? true : false);
-
-  const handleIcon = () => {
-    
-  }
   };
 
   const theme = createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
+      primary: {
+        main: "#AD49E1",
+      },
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout image = {darkMode} onClickTheme={handleBackground} />
+      <Layout image={darkMode} onClickTheme={handleBackground} />
     </ThemeProvider>
   );
 }

@@ -11,11 +11,11 @@ import {
 import Grid from "@mui/material/Grid2";
 import iconButtonMoon from "./assets/icon-moon.svg";
 import iconButtonsun from "./assets/icon-sun.svg";
+import Form from "./Form";
 
 export default function Layout({ onClickTheme, image }) {
   const { palette } = useTheme();
 
-  
   return (
     <Box
       sx={{
@@ -58,8 +58,15 @@ export default function Layout({ onClickTheme, image }) {
               </Typography>
 
               <IconButton onClick={onClickTheme}>
-                <img src={iconButtonMoon} alt="moonicon" />
+                <img
+                  src={image ? iconButtonsun : iconButtonMoon}
+                  alt="moonicon"
+                />
               </IconButton>
+            </Box>
+            
+            <Box mt="100px" boxShadow="rgb(8, 8, 8) 0px 30px 40px -12px">
+              <Form />
             </Box>
           </Grid>
         </Grid>

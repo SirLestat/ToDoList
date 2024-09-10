@@ -13,7 +13,7 @@ import iconButtonMoon from "./assets/icon-moon.svg";
 import iconButtonsun from "./assets/icon-sun.svg";
 import Form from "./Form";
 
-export default function Layout({ onClickTheme, image }) {
+export default function Layout({ onClickTheme, themeMode }) {
   const { palette } = useTheme();
 
   return (
@@ -27,7 +27,7 @@ export default function Layout({ onClickTheme, image }) {
     >
       <Box
         sx={{
-          backgroundImage: image
+          backgroundImage: themeMode
             ? "url(/images/bg-desktop-dark.jpg)"
             : "url(/images/bg-desktop-light.jpg)",
           height: "300px",
@@ -56,15 +56,21 @@ export default function Layout({ onClickTheme, image }) {
               >
                 Todo
               </Typography>
+              <Box>
+                <IconButton onClick={onClickTheme}>
+                  <img
+                    style={{
+                      transition: "opacity 1s ease-in-out",
+                    }}
 
-              <IconButton onClick={onClickTheme}>
-                <img
-                  src={image ? iconButtonsun : iconButtonMoon}
-                  alt="moonicon"
-                />
-              </IconButton>
+                    src={themeMode ? iconButtonsun : iconButtonMoon}
+                    alt="moonicon"
+                    
+                  />
+                </IconButton>
+              </Box>
             </Box>
-            
+
             <Box mt="100px" boxShadow="rgb(8, 8, 8) 0px 30px 40px -12px">
               <Form />
             </Box>

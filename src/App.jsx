@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { LightMode } from "@mui/icons-material";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -14,6 +15,10 @@ function App() {
       mode: darkMode ? "dark" : "light",
       primary: {
         main: "#AD49E1",
+      },
+      background: {
+        default: darkMode ? "#181824" : "#fafafa",
+        paper: darkMode ? "#25273c" : "#fafafa",
       },
     },
   });

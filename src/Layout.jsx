@@ -7,11 +7,13 @@ import {
   Typography,
   CssBaseline,
   useTheme,
+  Paper,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import iconButtonMoon from "./assets/icon-moon.svg";
 import iconButtonsun from "./assets/icon-sun.svg";
 import Form from "./Form";
+import TaskList from "./TaskList";
 
 export default function Layout({ onClickTheme, themeMode }) {
   const { palette } = useTheme();
@@ -62,18 +64,20 @@ export default function Layout({ onClickTheme, themeMode }) {
                     style={{
                       transition: "opacity 1s ease-in-out",
                     }}
-
                     src={themeMode ? iconButtonsun : iconButtonMoon}
-                    alt="moonicon"
-                    
+                    alt="themeicon"
                   />
                 </IconButton>
               </Box>
             </Box>
 
-            <Box mt="100px" boxShadow="rgb(8, 8, 8) 0px 30px 40px -12px">
+            <Paper elevation={15} sx={{ mt: 4 }}>
               <Form />
-            </Box>
+            </Paper>
+
+            <Paper elevation={15}>
+              <TaskList />
+            </Paper>
           </Grid>
         </Grid>
       </Container>

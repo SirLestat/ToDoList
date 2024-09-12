@@ -1,30 +1,29 @@
 import { useTheme } from "@emotion/react";
 import Checkbox from "@mui/material/Checkbox";
-import { FormControlLabel, List, ListItem } from "@mui/material";
+import { Box, Button, FormControlLabel, List, ListItem } from "@mui/material";
+import { useState } from "react";
+import Form from "./Form";
 
-export default function TaskList() {
+export default function TaskList({}) {
+  let taskItems = 0;
+  const [state, setState] = useState(0);
+
   const theme = useTheme();
   return (
-    <List
-      sx={{
-        mt: 5,
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? theme.palette.background.paper
-            : theme.palette.background.default,
-        transition: "1s",
-        borderRadius: 1,
-      }}
-    >
-      <ListItem>
-        <FormControlLabel
-          control={<Checkbox checked={false} />}
-          label="Test 1"
-        />
-      </ListItem>
-      <ListItem>
-        <p>Test 2</p>
-      </ListItem>
-    </List>
+    <Box>
+      {taskItems}
+      {state}
+      <Button
+        onClick={() => {
+          setState(state + 5);
+          console.log(taskItems);
+          taskItems = 5;
+          console.log(taskItems);
+        }}
+      >
+        {" "}
+        Up
+      </Button>
+    </Box>
   );
 }

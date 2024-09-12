@@ -10,9 +10,9 @@ const schema = Yup.object().shape({
     .matches(/^\S.*$/, "La tarea no puede ser solo espacios en blanco"),
 });
 
-export default function Form() {
+export default function Form({addTask}) {
   const submitForm = (values) => {
-    //console.log(values);
+    addTask(values.task)
     localStorage.setItem("task", values.task);
     formik.resetForm();
 

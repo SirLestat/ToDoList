@@ -14,9 +14,15 @@ import iconButtonMoon from "./assets/icon-moon.svg";
 import iconButtonsun from "./assets/icon-sun.svg";
 import Form from "./Form";
 import TaskList from "./TaskList";
+import { useState } from "react";
 
 export default function Layout({ onClickTheme, themeMode }) {
   const { palette } = useTheme();
+
+
+  const [newTask, setNewTask] = useState([]);
+
+  
 
   return (
     <Box

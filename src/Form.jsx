@@ -1,5 +1,6 @@
 import { FormGroup, TextField, useTheme } from "@mui/material";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 
 const schema = Yup.object().shape({
@@ -10,13 +11,10 @@ const schema = Yup.object().shape({
     .matches(/^\S.*$/, "La tarea no puede ser solo espacios en blanco"),
 });
 
-export default function Form({addTask}) {
+export default function Form() {
   const submitForm = (values) => {
-    addTask(values.task)
     localStorage.setItem("task", values.task);
     formik.resetForm();
-
-    console.log(values);
   };
 
   const formik = useFormik({

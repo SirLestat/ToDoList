@@ -19,10 +19,11 @@ import { useState } from "react";
 export default function Layout({ onClickTheme, themeMode }) {
   const { palette } = useTheme();
 
+  const [tasks, setTasks] = useState([]);
 
-  const [newTask, setNewTask] = useState([]);
-
-  
+  const addTask = (newTask) => {
+    setTasks([{ ...newTask }, ...tasks]); 
+  };
 
   return (
     <Box
@@ -78,11 +79,16 @@ export default function Layout({ onClickTheme, themeMode }) {
             </Box>
 
             <Paper elevation={15} sx={{ mt: 4 }}>
-              <Form />
+              <Form addTask={addTask} />
             </Paper>
 
-            <Paper elevation={15}>
-              <TaskList />
+            <Paper
+              elevation={15}
+              sx={{
+                mt: "15px",
+              }}
+            >
+              <TaskList tasks={tasks} />
             </Paper>
           </Grid>
         </Grid>

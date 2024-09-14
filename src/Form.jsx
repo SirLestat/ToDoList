@@ -11,19 +11,26 @@ const schema = Yup.object().shape({
     .matches(/^\S.*$/, "La tarea no puede ser solo espacios en blanco"),
 });
 
-export default function Form({addTask}) {
+export default function Form({ setTasks }) {
   const submitForm = (values) => {
-    
-    addTask({task: values.task,isComplete: false})
+    setTasks((task) => {
+      const existTask = task.find((item) => item.task === values.task);
+
+      if (existTask) {
+        formik.setFieldError("task", "La tarea ya existe");
+        return task;
+      }
+
+      formik.resetForm();
+
+      return [{ task: values.task, isComplete: false }, ...task];
+    });
     //localStorage.setItem("task", values.task);
-    formik.resetForm();
   };
 
   const formik = useFormik({
     initialValues: {
-
       task: "",
-   
     },
     onSubmit: submitForm,
     validationSchema: schema,

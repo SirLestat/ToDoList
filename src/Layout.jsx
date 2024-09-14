@@ -22,7 +22,7 @@ export default function Layout({ onClickTheme, themeMode }) {
   const [tasks, setTasks] = useState([]);
 
   const addTask = (newTask) => {
-    setTasks([{ ...newTask }, ...tasks]); 
+    setTasks([{ ...newTask }, ...tasks]);
   };
 
   return (
@@ -79,7 +79,7 @@ export default function Layout({ onClickTheme, themeMode }) {
             </Box>
 
             <Paper elevation={15} sx={{ mt: 4 }}>
-              <Form addTask={addTask} />
+              <Form setTasks={setTasks} />
             </Paper>
 
             <Paper

@@ -9,8 +9,10 @@ export default function TaskList({ tasks }) {
   const theme = useTheme();
   return (
     <Box>
-      <List >
-        {tasks.map((task) => (<ListItem key={task.id}>{task.task}</ListItem>))}
+      <List>
+        {tasks.map((task) => (
+          <ListItem key={task.task}>{task.task}</ListItem>
+        ))}
       </List>
     </Box>
   );

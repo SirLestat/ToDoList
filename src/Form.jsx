@@ -12,7 +12,7 @@ const schema = Yup.object().shape({
 });
 
 export default function Form({ setTasks }) {
-  const submitForm = (values) => {
+  const addTask = (values) => {
     setTasks((task) => {
       const existTask = task.find((item) => item.task === values.task);
 
@@ -32,7 +32,7 @@ export default function Form({ setTasks }) {
     initialValues: {
       task: "",
     },
-    onSubmit: submitForm,
+    onSubmit: addTask,
     validationSchema: schema,
   });
 
@@ -41,6 +41,7 @@ export default function Form({ setTasks }) {
     <div>
       <form onSubmit={formik.handleSubmit}>
         <TextField
+          autoComplete="off"
           name="task"
           label="Nueva tarea"
           variant="filled"

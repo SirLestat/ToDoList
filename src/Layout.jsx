@@ -21,8 +21,13 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (newTask) => {
-    setTasks([{ ...newTask }, ...tasks]);
+  
+
+  const deleteTask = (deletetask) => {
+    const newTasks = tasks.filter((task) => {
+      return task !== deletetask;
+    });
+    setTasks(newTasks);
   };
 
   return (
@@ -88,7 +93,7 @@ export default function Layout({ onClickTheme, themeMode }) {
                 mt: "15px",
               }}
             >
-              <TaskList tasks={tasks} />
+              <TaskList tasks={tasks} deleteTask={deleteTask} />
             </Paper>
           </Grid>
         </Grid>

@@ -31,6 +31,7 @@ export default function Form({ setTasks }) {
   const formik = useFormik({
     initialValues: {
       task: "",
+      isComplete: false,
     },
     onSubmit: addTask,
     validationSchema: schema,

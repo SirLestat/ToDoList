@@ -21,13 +21,18 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [tasks, setTasks] = useState([]);
 
-  
-
   const deleteTask = (deletetask) => {
     const newTasks = tasks.filter((task) => {
       return task !== deletetask;
     });
     setTasks(newTasks);
+  };
+
+  const checkedTask = (task) => {
+    const updateList = tasks.map((item) =>
+      item === task ? { ...item, isComplete: !item.isComplete } : item
+    );
+    setTasks(updateList);
   };
 
   return (
@@ -93,7 +98,11 @@ export default function Layout({ onClickTheme, themeMode }) {
                 mt: "15px",
               }}
             >
-              <TaskList tasks={tasks} deleteTask={deleteTask} />
+              <TaskList
+                tasks={tasks}
+                deleteTask={deleteTask}
+                checkedTask={checkedTask}
+              />
             </Paper>
           </Grid>
         </Grid>

@@ -1,12 +1,10 @@
 import { useTheme } from "@emotion/react";
 import Checkbox from "@mui/material/Checkbox";
-import { Box, Button, FormControlLabel, List, ListItem } from "@mui/material";
-import { useState } from "react";
-import Form from "./Form";
-import Layout from "./Layout";
+import { Box, FormControlLabel, IconButton } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
+import iconCross from "./assets/icon-cross.svg";
 
-export default function TaskList({ tasks, deleteTask }) {
+export default function TaskList({ tasks, deleteTask, checkedTask }) {
   const theme = useTheme();
   return (
     <Box>
@@ -15,11 +13,22 @@ export default function TaskList({ tasks, deleteTask }) {
           <FormControlLabel
             sx={{ ml: "10px" }}
             key={task.task}
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                checked={task.isComplete}
+                onChange={() => checkedTask(task)}
+              />
+            }
             label={
-              <Box>
+              <Box
+                sx={{
+                  textDecoration: task.isComplete && "line-through",
+                }}
+              >
                 {task.task}{" "}
-                <Button onClick={() => deleteTask(task)}>X</Button>
+                <IconButton sx={{}} onClick={() => deleteTask(task)} >
+                  <img src={iconCross} alt="cross" />
+                </IconButton>
               </Box>
             }
           />

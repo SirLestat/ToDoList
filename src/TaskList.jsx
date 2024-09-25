@@ -31,6 +31,8 @@ export default function TaskList({
           <Box
             key={task.task}
             sx={{
+              pt: "10px",
+              pb: "10px",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -50,6 +52,11 @@ export default function TaskList({
               }}
               control={
                 <Checkbox
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                    },
+                  }}
                   checked={task.isComplete}
                   onChange={() => checkedTask(task)}
                   icon={
@@ -75,6 +82,7 @@ export default function TaskList({
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+
                         //backgroundImage: "url(src/assets/icon-check.svg)"
                       }}
                     ></Box>
@@ -84,7 +92,7 @@ export default function TaskList({
               label={
                 <Box
                   sx={{
-                    textDecoration: task.isComplete ? "line-through" : "none",
+                    textDecoration: task.isComplete && "line-through",
                     color: task.isComplete
                       ? theme.palette.text.disabled
                       : theme.palette.text.primary,

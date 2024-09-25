@@ -50,7 +50,7 @@ export default function Form({ setTasks }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.task}
-          error={formik.touched.task && Boolean(formik.errors.task)}
+          error={formik.touched.task && (formik.errors.task)}
           helperText={formik.touched.task && formik.errors.task}
           sx={{
             backgroundColor:

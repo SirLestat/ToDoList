@@ -76,7 +76,10 @@ export default function Layout({ onClickTheme, themeMode }) {
                 Todo
               </Typography>
               <Box>
-                <IconButton onClick={onClickTheme}>
+                <IconButton
+                  onClick={onClickTheme}
+                  sx={{ "&:hover": { backgroundColor: "transparent" } }}
+                >
                   <img
                     style={{
                       transition: "opacity 1s ease-in-out",
@@ -99,6 +102,7 @@ export default function Layout({ onClickTheme, themeMode }) {
               }}
             >
               <TaskList
+                themeMode={themeMode}
                 tasks={tasks}
                 deleteTask={deleteTask}
                 checkedTask={checkedTask}

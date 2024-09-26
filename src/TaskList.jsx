@@ -2,10 +2,8 @@ import { useTheme } from "@emotion/react";
 import Checkbox from "@mui/material/Checkbox";
 import { Box, FormControlLabel, IconButton } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
-import Check from "./assets/icon-check.svg";
 import CloseIcon from "@mui/icons-material/Close";
-import { grey } from "@mui/material/colors";
-import CheckIcon from "@mui/icons-material/Check";
+import iconCheck from "./assets/icon-check.svg";
 
 export default function TaskList({
   tasks,
@@ -26,8 +24,10 @@ export default function TaskList({
         transition: "1s",
       }}
     >
+      {/*Contenedor de todos los elementos renderizados */}
       <FormGroup>
         {tasks.map((task) => (
+          /*Contenedor de cada elemento agregado a la lista */
           <Box
             key={task.task}
             sx={{
@@ -41,17 +41,22 @@ export default function TaskList({
                 backgroundColor: themeMode
                   ? "rgba(24, 24, 36, 0.3)"
                   : "rgba(173, 73, 225, 0.3)",
-                borderRadius: "4px",
+                borderRadius: 1,
               },
             }}
           >
+            {" "}
+            {/*Etiqueta del elemento */}
             <FormControlLabel
               sx={{
                 ml: "5px",
                 flexGrow: 1,
               }}
               control={
+                /*Control del checkbox */
                 <Checkbox
+                  /*Desabilita el efecto de toque predeterminado */
+                  disableTouchRipple={true}
                   sx={{
                     "&:hover": {
                       backgroundColor: "transparent",
@@ -64,28 +69,29 @@ export default function TaskList({
                       sx={{
                         width: 20,
                         height: 20,
-                        border: "2px solid",
-                        borderColor: theme.palette.text.primary,
+                        border: "2px solid ",
                         borderRadius: "50%",
                         transition: "all 0.2s",
                       }}
                     />
                   }
                   checkedIcon={
-                    <Box
+                    <IconButton
                       sx={{
                         width: 20,
                         height: 20,
                         borderRadius: "50%",
                         background:
-                          "linear-gradient(159deg, rgba(0,255,218,1) 0%, rgba(255,0,202,1) 100%)",
+                          "linear-gradient(140deg, rgba(0,255,218,1) -20%, rgba(255,0,202,1) 140%)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
 
                         //backgroundImage: "url(src/assets/icon-check.svg)"
                       }}
-                    ></Box>
+                    >
+                      <img src={iconCheck} alt="icon" />
+                    </IconButton>
                   }
                 />
               }
@@ -102,14 +108,15 @@ export default function TaskList({
                 </Box>
               }
             />
+            {/*Boton de eliminar */}
             <IconButton
+              /*Desabilita el efecto de toque predeterminado */
+              disableTouchRipple={true}
               onClick={() => deleteTask(task)}
               size="small"
               sx={{
                 mr: "5px",
-                color: themeMode
-                  ? theme.palette.grey[400]
-                  : theme.palette.grey[800],
+                color: theme.palette.text.primary,
                 "&:hover": {
                   color: theme.palette.error.main,
                   backgroundColor: "transparent",

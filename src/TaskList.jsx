@@ -4,14 +4,23 @@ import { Box, FormControlLabel, IconButton } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import CloseIcon from "@mui/icons-material/Close";
 import iconCheck from "./assets/icon-check.svg";
+import Filter from "./Filter";
 
 export default function TaskList({
+  setFilter,
+  filter,
   tasks,
   deleteTask,
   checkedTask,
   themeMode,
 }) {
   const theme = useTheme();
+  
+  const showTask =
+    filter === null
+      ? tasks
+      : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
+
   return (
     /*Contenedor principal*/
     <Box
@@ -26,7 +35,7 @@ export default function TaskList({
     >
       {/*Contenedor de todos los elementos renderizados */}
       <FormGroup>
-        {tasks.map((task) => (
+        {showTask.map((task) => (
           /*Contenedor de cada elemento agregado a la lista */
           <Box
             key={task.task}
@@ -45,7 +54,6 @@ export default function TaskList({
               },
             }}
           >
-            {" "}
             {/*Etiqueta del elemento */}
             <FormControlLabel
               sx={{
@@ -129,6 +137,7 @@ export default function TaskList({
           </Box>
         ))}
       </FormGroup>
+      <Filter tasks={tasks} showTask={showTask} />
     </Box>
   );
 }

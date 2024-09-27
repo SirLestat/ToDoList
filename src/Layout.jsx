@@ -21,6 +21,10 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [tasks, setTasks] = useState([]);
 
+  const [filter, setFilter] = useState(null);
+
+  //limpiar completas
+
   const deleteTask = (deletetask) => {
     const newTasks = tasks.filter((task) => {
       return task !== deletetask;
@@ -77,11 +81,13 @@ export default function Layout({ onClickTheme, themeMode }) {
               </Typography>
               <Box>
                 <IconButton
+                  disableTouchRipple={true}
                   onClick={onClickTheme}
                   sx={{ "&:hover": { backgroundColor: "transparent" } }}
                 >
                   <img
                     style={{
+                      filter: !themeMode ? "black" : "none",
                       transition: "opacity 1s ease-in-out",
                     }}
                     src={themeMode ? iconButtonsun : iconButtonMoon}
@@ -102,10 +108,12 @@ export default function Layout({ onClickTheme, themeMode }) {
               }}
             >
               <TaskList
+                filter={filter}
                 themeMode={themeMode}
                 tasks={tasks}
                 deleteTask={deleteTask}
                 checkedTask={checkedTask}
+                setFilter={setFilter}
               />
             </Paper>
           </Grid>

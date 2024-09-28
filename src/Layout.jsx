@@ -23,6 +23,8 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [filter, setFilter] = useState(null);
 
+  let remainingTasks = tasks.length
+
   //limpiar completas
 
   const deleteTask = (deletetask) => {
@@ -37,6 +39,7 @@ export default function Layout({ onClickTheme, themeMode }) {
       item === task ? { ...item, isComplete: !item.isComplete } : item
     );
     setTasks(updateList);
+    
   };
 
   return (
@@ -87,7 +90,7 @@ export default function Layout({ onClickTheme, themeMode }) {
                 >
                   <img
                     style={{
-                      filter: !themeMode ? "black" : "none",
+                      //filter: !themeMode ? "invert(75%)" : "none",
                       transition: "opacity 1s ease-in-out",
                     }}
                     src={themeMode ? iconButtonsun : iconButtonMoon}
@@ -114,6 +117,7 @@ export default function Layout({ onClickTheme, themeMode }) {
                 deleteTask={deleteTask}
                 checkedTask={checkedTask}
                 setFilter={setFilter}
+                setTasks={setTasks}
               />
             </Paper>
           </Grid>

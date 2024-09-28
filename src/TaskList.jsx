@@ -13,13 +13,27 @@ export default function TaskList({
   deleteTask,
   checkedTask,
   themeMode,
+  setTasks,
 }) {
   const theme = useTheme();
-  
+
   const showTask =
     filter === null
       ? tasks
       : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
+    
+
+  const cleanTasks = () => {
+    const cleanedTaskList = tasks.filter((task) => !task.isComplete);
+    setTasks(cleanedTaskList);
+
+  };
+
+
+
+  const remainingTasks = showTask.filter((task) => !task.isComplete).length
+
+  
 
   return (
     /*Contenedor principal*/
@@ -134,10 +148,27 @@ export default function TaskList({
             >
               <CloseIcon fontSize="small" />
             </IconButton>
+            
           </Box>
-        ))}
+          
+
+          
+
+          
+        ))  } 
+        
       </FormGroup>
-      <Filter tasks={tasks} showTask={showTask} />
+      <Filter
+        theme={theme}
+        cleanTasks={cleanTasks}
+        tasks={tasks}
+        showTask={showTask}
+        filter={filter}
+        setFilter={setFilter}
+        setTasks={setTasks}
+        checkedTask={checkedTask}
+        remainingTasks={remainingTasks}
+      />
     </Box>
   );
 }

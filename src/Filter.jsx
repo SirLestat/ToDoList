@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
+import Grid from '@mui/material/Grid2';
 
 export default function Filter({
   setFilter,
@@ -12,9 +13,11 @@ export default function Filter({
 
   
   return (
-    <Box
+    <Grid container
       sx={{
-        padding: "15px",
+        ml:"10px",
+        mr:"10px",
+        padding: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -28,10 +31,11 @@ export default function Filter({
 
       <Box sx={{display: "flex",
       }}>
-        <Box
+        <Button
           sx={{
-            mr: "20px",
-            cursor: "pointer",
+            
+            textTransform: "none",
+            
             fontSize: "12px",
             color:
               filter === null
@@ -47,11 +51,11 @@ export default function Filter({
           }}
         >
           Todas
-        </Box>
-        <Box
+        </Button>
+
+        <Button 
           sx={{
-            mr: "20px",
-            cursor: "pointer",
+            textTransform: "none",
             fontSize: "12px",
             color:
               filter === true
@@ -67,11 +71,12 @@ export default function Filter({
           }}
         >
           Completadas
-        </Box>
+        </Button>
 
-        <Box
+        <Button
           sx={{
-            cursor: "pointer",
+            padding: 0,
+            textTransform: "none",
             fontSize: "12px",
             color:
               filter === false
@@ -87,11 +92,12 @@ export default function Filter({
           }}
         >
           Activas
-        </Box>
+        </Button>
       </Box>
 
-      <Box
+      <Button
         sx={{
+          textTransform: "none",
           cursor: "pointer",
           fontSize: "12px",
           color: theme.palette.text.disabled,
@@ -103,7 +109,7 @@ export default function Filter({
         onClick={cleanTasks}
       >
         Limpiar completadas
-      </Box>
-    </Box>
+      </Button>
+    </Grid>
   );
 }

@@ -5,27 +5,38 @@ export default function Filter({
   setFilter,
   cleanTasks,
   remainingTasks,
-  showTask,
   theme,
+  handleClick,
+  filter,
 }) {
+
+  
   return (
     <Box
       sx={{
+        padding: "15px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
+        
       }}
     >
-      <Typography sx={{ fontSize: "10px" }}>
-        Tareas restantes: {remainingTasks}
+      <Typography sx={{ fontSize: "12px", color: theme.palette.text.disabled }}>
+      {remainingTasks} Tareas restantes 
       </Typography>
 
-      <Box
-        
+
+      <Box sx={{display: "flex",
+      }}>
+        <Box
           sx={{
-            cursor: 'pointer',
-            fontSize: "10px",
-            color: theme.palette.text.primary,
+            mr: "20px",
+            cursor: "pointer",
+            fontSize: "12px",
+            color:
+              filter === null
+                ? theme.palette.primary.main
+                : theme.palette.text.disabled,
             "&:hover": {
               background: "transparent",
               color: theme.palette.primary.main,
@@ -36,17 +47,19 @@ export default function Filter({
           }}
         >
           Todas
-        
-      </Box>
-      <Box>
-        <Button
+        </Box>
+        <Box
           sx={{
-            fontSize: "10px",
-            color: theme.palette.text.disabled,
+            mr: "20px",
+            cursor: "pointer",
+            fontSize: "12px",
+            color:
+              filter === true
+                ? theme.palette.primary.main
+                : theme.palette.text.disabled,
             "&:hover": {
               background: "transparent",
               color: theme.palette.primary.main,
-              
             },
           }}
           onClick={() => {
@@ -54,14 +67,16 @@ export default function Filter({
           }}
         >
           Completadas
-        </Button>
-      </Box>
+        </Box>
 
-      <Box>
-        <Button
+        <Box
           sx={{
-            fontSize: "10px",
-            color: theme.palette.text.primary,
+            cursor: "pointer",
+            fontSize: "12px",
+            color:
+              filter === false
+                ? theme.palette.primary.main
+                : theme.palette.text.disabled,
             "&:hover": {
               background: "transparent",
               color: theme.palette.primary.main,
@@ -72,23 +87,22 @@ export default function Filter({
           }}
         >
           Activas
-        </Button>
+        </Box>
       </Box>
 
-      <Box>
-        <Button
-          sx={{
-            fontSize: "10px",
-            color: theme.palette.text.primary,
-            "&:hover": {
-              background: "transparent",
-              color: theme.palette.primary.main,
-            },
-          }}
-          onClick={cleanTasks}
-        >
-          Limpiar completadas
-        </Button>
+      <Box
+        sx={{
+          cursor: "pointer",
+          fontSize: "12px",
+          color: theme.palette.text.disabled,
+          "&:hover": {
+            background: "transparent",
+            color: theme.palette.primary.main,
+          },
+        }}
+        onClick={cleanTasks}
+      >
+        Limpiar completadas
       </Box>
     </Box>
   );

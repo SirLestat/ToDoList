@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
 export default function Form({ setTasks }) {
   const addTask = (values) => {
     setTasks((task) => {
-      const existTask = task.find((item) => item.task === values.task);
+      const existTask = task.find((item) => item.task.toLowerCase() === values.task.toLowerCase());
 
       if (existTask) {
         formik.setFieldError("task", "La tarea ya existe");

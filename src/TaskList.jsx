@@ -11,17 +11,21 @@ export default function TaskList({
   filter,
   tasks,
   deleteTask,
+  handleClick,
   checkedTask,
   themeMode,
   setTasks,
 }) {
   const theme = useTheme();
-
+  
+  //funcion para aplicar filtros
   const showTask =
     filter === null
       ? tasks
       : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
+
     
+  //Funcion para limpiar todas las tareas completadas
 
   const cleanTasks = () => {
     const cleanedTaskList = tasks.filter((task) => !task.isComplete);
@@ -29,7 +33,7 @@ export default function TaskList({
 
   };
 
-
+  //Contador de tareas no completadas
 
   const remainingTasks = showTask.filter((task) => !task.isComplete).length
 
@@ -159,6 +163,7 @@ export default function TaskList({
         
       </FormGroup>
       <Filter
+      handleClick={handleClick}
         theme={theme}
         cleanTasks={cleanTasks}
         tasks={tasks}

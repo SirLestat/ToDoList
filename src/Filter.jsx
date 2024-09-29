@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
-import Grid from '@mui/material/Grid2';
+import Grid from "@mui/material/Grid2";
 
 export default function Filter({
   setFilter,
@@ -10,32 +10,28 @@ export default function Filter({
   handleClick,
   filter,
 }) {
-
-  
   return (
-    <Grid container
+    <Grid
+      container
       sx={{
-        ml:"10px",
-        mr:"10px",
-        padding: "10px",
+        pt: "10px",
+        pr: "15px",
+        pb: "10px",
+        pl: "15px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        
       }}
     >
       <Typography sx={{ fontSize: "12px", color: theme.palette.text.disabled }}>
-      {remainingTasks} Tareas restantes 
+        {remainingTasks} Tareas restantes
       </Typography>
 
-
-      <Box sx={{display: "flex",
-      }}>
+      <Box sx={{ display: "flex" }}>
         <Button
           sx={{
-            
             textTransform: "none",
-            
+
             fontSize: "12px",
             color:
               filter === null
@@ -53,7 +49,7 @@ export default function Filter({
           Todas
         </Button>
 
-        <Button 
+        <Button
           sx={{
             textTransform: "none",
             fontSize: "12px",
@@ -75,7 +71,6 @@ export default function Filter({
 
         <Button
           sx={{
-            padding: 0,
             textTransform: "none",
             fontSize: "12px",
             color:

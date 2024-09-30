@@ -14,10 +14,10 @@ export default function Filter({
     <Grid
       container
       sx={{
-        pt: "10px",
-        pr: "15px",
-        pb: "10px",
-        pl: "15px",
+        pt: "5px",
+        pr: "10px",
+        pb: "5px",
+        pl: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -31,7 +31,6 @@ export default function Filter({
         <Button
           sx={{
             textTransform: "none",
-
             fontSize: "12px",
             color:
               filter === null
@@ -54,26 +53,6 @@ export default function Filter({
             textTransform: "none",
             fontSize: "12px",
             color:
-              filter === true
-                ? theme.palette.primary.main
-                : theme.palette.text.disabled,
-            "&:hover": {
-              background: "transparent",
-              color: theme.palette.primary.main,
-            },
-          }}
-          onClick={() => {
-            setFilter(true);
-          }}
-        >
-          Completadas
-        </Button>
-
-        <Button
-          sx={{
-            textTransform: "none",
-            fontSize: "12px",
-            color:
               filter === false
                 ? theme.palette.primary.main
                 : theme.palette.text.disabled,
@@ -87,6 +66,26 @@ export default function Filter({
           }}
         >
           Activas
+        </Button>
+
+        <Button
+          sx={{
+            textTransform: "none",
+            fontSize: "12px",
+            color:
+              filter === true
+                ? theme.palette.primary.main
+                : theme.palette.text.disabled,
+            "&:hover": {
+              background: "transparent",
+              color: theme.palette.primary.main,
+            },
+          }}
+          onClick={() => {
+            setFilter(true);
+          }}
+        >
+          Completadas
         </Button>
       </Box>
 

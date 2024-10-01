@@ -26,6 +26,7 @@ export default function Filter({
       <Typography sx={{ fontSize: "12px", color: theme.palette.text.disabled }}>
         {remainingTasks} Tareas restantes
       </Typography>
+
       <Box sx={{ display: "flex" }}>
         <Button
           sx={{

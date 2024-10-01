@@ -7,7 +7,6 @@ export default function Filter({
   cleanTasks,
   remainingTasks,
   theme,
-  handleClick,
   filter,
 }) {
   return (

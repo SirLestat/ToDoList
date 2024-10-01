@@ -11,7 +11,6 @@ export default function TaskList({
   filter,
   tasks,
   deleteTask,
-  handleClick,
   checkedTask,
   themeMode,
   setTasks,
@@ -163,7 +162,6 @@ export default function TaskList({
         
       </FormGroup>
       <Filter
-      handleClick={handleClick}
         theme={theme}
         cleanTasks={cleanTasks}
         tasks={tasks}

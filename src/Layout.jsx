@@ -23,12 +23,6 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [filter, setFilter] = useState(null);
 
-  const [colorButton, setColorButton] = useState(palette.text.disabled);
-
-  const handleClick = () => {
-    setColorButton(palette.primary.main);
-  };
-
   //limpiar completas
 
   const deleteTask = (deletetask) => {
@@ -114,9 +108,7 @@ export default function Layout({ onClickTheme, themeMode }) {
               }}
             >
               <TaskList
-                setColorButton={setColorButton}
-                colorButton={colorButton}
-                handleClick={handleClick}
+                
                 filter={filter}
                 themeMode={themeMode}
                 tasks={tasks}

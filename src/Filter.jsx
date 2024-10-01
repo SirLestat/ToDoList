@@ -13,10 +13,7 @@ export default function Filter({
     <Grid
       container
       sx={{
-        pt: "5px",
-        pr: "10px",
-        pb: "5px",
-        pl: "10px",
+        padding: "5px 10px 5px 10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",

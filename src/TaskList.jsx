@@ -16,27 +16,20 @@ export default function TaskList({
   setTasks,
 }) {
   const theme = useTheme();
-  
+
   //funcion para aplicar filtros
   const showTask =
     filter === null
       ? tasks
       : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
 
-    
   //Funcion para limpiar todas las tareas completadas
-
   const cleanTasks = () => {
     const cleanedTaskList = tasks.filter((task) => !task.isComplete);
     setTasks(cleanedTaskList);
-
   };
-
   //Contador de tareas no completadas
-
-  const remainingTasks = showTask.filter((task) => !task.isComplete).length
-
-  
+  const remainingTasks = showTask.filter((task) => !task.isComplete).length;
 
   return (
     /*Contenedor principal*/
@@ -111,8 +104,6 @@ export default function TaskList({
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-
-                        //backgroundImage: "url(src/assets/icon-check.svg)"
                       }}
                     >
                       <img src={iconCheck} alt="icon" />
@@ -151,15 +142,8 @@ export default function TaskList({
             >
               <CloseIcon fontSize="small" />
             </IconButton>
-            
           </Box>
-          
-
-          
-
-          
-        ))  } 
-        
+        ))}
       </FormGroup>
       <Filter
         theme={theme}

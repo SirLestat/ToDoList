@@ -1,11 +1,8 @@
 import {
-  ThemeProvider,
-  createTheme,
   IconButton,
   Container,
   Box,
   Typography,
-  CssBaseline,
   useTheme,
   Paper,
 } from "@mui/material";
@@ -18,13 +15,10 @@ import { useState } from "react";
 
 export default function Layout({ onClickTheme, themeMode }) {
   const { palette } = useTheme();
-
   const [tasks, setTasks] = useState([]);
-
   const [filter, setFilter] = useState(null);
 
   //Funcion para borrar tareas la tarea seleccionada
-
   const deleteTask = (deletetask) => {
     const newTasks = tasks.filter((task) => {
       return task !== deletetask;
@@ -88,7 +82,6 @@ export default function Layout({ onClickTheme, themeMode }) {
                 >
                   <img
                     style={{
-                      //filter: !themeMode ? "invert(75%)" : "none",
                       transition: "opacity 1s ease-in-out",
                     }}
                     src={themeMode ? iconButtonsun : iconButtonMoon}
@@ -97,11 +90,9 @@ export default function Layout({ onClickTheme, themeMode }) {
                 </IconButton>
               </Box>
             </Box>
-
             <Paper elevation={15} sx={{ mt: 4 }}>
               <Form setTasks={setTasks} />
             </Paper>
-
             <Paper
               elevation={15}
               sx={{
@@ -109,7 +100,6 @@ export default function Layout({ onClickTheme, themeMode }) {
               }}
             >
               <TaskList
-                
                 filter={filter}
                 themeMode={themeMode}
                 tasks={tasks}

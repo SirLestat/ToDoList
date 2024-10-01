@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { LightMode } from "@mui/icons-material";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -27,7 +26,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Layout themeMode={darkMode} onClickTheme={handleBackground} />
-      
     </ThemeProvider>
   );
 }

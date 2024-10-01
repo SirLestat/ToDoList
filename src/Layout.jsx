@@ -23,7 +23,7 @@ export default function Layout({ onClickTheme, themeMode }) {
 
   const [filter, setFilter] = useState(null);
 
-  //limpiar completas
+  //Funcion para borrar tareas la tarea seleccionada
 
   const deleteTask = (deletetask) => {
     const newTasks = tasks.filter((task) => {
@@ -32,6 +32,7 @@ export default function Layout({ onClickTheme, themeMode }) {
     setTasks(newTasks);
   };
 
+  //Funcion para marcar tareas como completadas
   const checkedTask = (task) => {
     const updateList = tasks.map((item) =>
       item === task ? { ...item, isComplete: !item.isComplete } : item

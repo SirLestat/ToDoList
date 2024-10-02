@@ -12,13 +12,53 @@ import iconButtonsun from "./assets/icon-sun.svg";
 import Form from "./Form";
 import TaskList from "./TaskList";
 import { useState } from "react";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
-export default function Layout({ onClickTheme, themeMode }) {
+export default function Layout({ onClickTheme, themeMode, theme }) {
   const { palette } = useTheme();
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState(null);
 
-  //Funcion para borrar tareas la tarea seleccionada
+  //Reglas para el input
+  const schema = Yup.object().shape({
+    task: Yup.string()
+      .matches(/^\S.*$/, "La tarea no puede ser solo espacios en blanco")
+      .max(100, "La tarea no puede tener mas de 100 caracteres")
+      .min(3, "La tarea debe tener al menos 3 caracteres")
+      .required("¡Ingresa una tarea valida!"),
+  });
+
+  // Funcion para agregar tarea, validando que no se repita
+  const addTask = (values) => {
+    setTasks((task) => {
+      const existTask = task.find(
+        (item) => item.task.toLowerCase() === values.task.toLowerCase()
+      );
+
+      if (existTask) {
+        formik.setFieldError("task", "La tarea ya existe");
+        return task;
+      }
+
+      formik.resetForm();
+
+      return [{ task: values.task, isComplete: false }, ...task];
+    });
+
+    //localStorage.setItem("task", values.task);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      task: "",
+      isComplete: false,
+    },
+    onSubmit: addTask,
+    validationSchema: schema,
+  });
+
+  //Funcion para borrar la tarea seleccionada
   const deleteTask = (deletetask) => {
     const newTasks = tasks.filter((task) => {
       return task !== deletetask;
@@ -33,6 +73,21 @@ export default function Layout({ onClickTheme, themeMode }) {
     );
     setTasks(updateList);
   };
+
+  //funcion para aplicar filtros
+  const showTask =
+    filter === null
+      ? tasks
+      : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
+
+  //Funcion para limpiar todas las tareas completadas
+  const cleanTasks = () => {
+    const cleanedTaskList = tasks.filter((task) => !task.isComplete);
+    setTasks(cleanedTaskList);
+  };
+
+  //Contador de tareas no completadas
+  const remainingTasks = showTask.filter((task) => !task.isComplete).length;
 
   return (
     <Box
@@ -58,19 +113,19 @@ export default function Layout({ onClickTheme, themeMode }) {
         <Grid container>
           <Grid size={12} sx={{ color: palette.common.white }}>
             <Box
+              alignItems="center"
               display="flex"
               justifyContent="space-between"
-              alignItems="center"
-              pt={4}
               pb={2}
+              pt={4}
             >
               <Typography
-                variant="h3"
                 component="h1"
-                textTransform="uppercase"
+                fontSize="40px"
                 fontWeight="bold"
                 letterSpacing={16}
-                fontSize="40px"
+                textTransform="uppercase"
+                variant="h3"
               >
                 Todo
               </Typography>
@@ -91,7 +146,7 @@ export default function Layout({ onClickTheme, themeMode }) {
               </Box>
             </Box>
             <Paper elevation={15} sx={{ mt: 4 }}>
-              <Form setTasks={setTasks} />
+              <Form formik={formik} />
             </Paper>
             <Paper
               elevation={15}
@@ -100,13 +155,18 @@ export default function Layout({ onClickTheme, themeMode }) {
               }}
             >
               <TaskList
-                filter={filter}
-                themeMode={themeMode}
-                tasks={tasks}
-                deleteTask={deleteTask}
                 checkedTask={checkedTask}
+                cleanTasks={cleanTasks}
+                deleteTask={deleteTask}
+                filter={filter}
+                remainingTasks={remainingTasks}
                 setFilter={setFilter}
                 setTasks={setTasks}
+                showTask={showTask}
+                tasks={tasks}
+                theme={theme}
+                themeMode={themeMode}
+                useTheme={useTheme}
               />
             </Paper>
           </Grid>

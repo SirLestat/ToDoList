@@ -25,7 +25,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout themeMode={darkMode} onClickTheme={handleBackground} />
+      <Layout themeMode={darkMode} onClickTheme={handleBackground} theme={theme}/>
     </ThemeProvider>
   );
 }

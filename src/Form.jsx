@@ -1,44 +1,7 @@
 import { TextField, useTheme } from "@mui/material";
-import { useFormik } from "formik";
 
-import * as Yup from "yup";
 
-const schema = Yup.object().shape({
-  task: Yup.string()
-    .required("¡Ingresa una tarea valida!")
-    .min(3, "La tarea debe tener al menos 3 caracteres")
-    .max(100, "La tarea no puede tener mas de 100 caracteres")
-    .matches(/^\S.*$/, "La tarea no puede ser solo espacios en blanco"),
-});
-
-export default function Form({ setTasks }) {
-  const addTask = (values) => {
-    setTasks((task) => {
-      const existTask = task.find(
-        (item) => item.task.toLowerCase() === values.task.toLowerCase()
-      );
-
-      if (existTask) {
-        formik.setFieldError("task", "La tarea ya existe");
-        return task;
-      }
-
-      formik.resetForm();
-
-      return [{ task: values.task, isComplete: false }, ...task];
-    });
-    //localStorage.setItem("task", values.task);
-  };
-
-  const formik = useFormik({
-    initialValues: {
-      task: "",
-      isComplete: false,
-    },
-    onSubmit: addTask,
-    validationSchema: schema,
-  });
-
+export default function Form({formik }) {
   const theme = useTheme();
   return (
     <div>

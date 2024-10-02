@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
 import Grid from "@mui/material/Grid2";
 
 export default function Filter({
@@ -9,14 +8,29 @@ export default function Filter({
   theme,
   filter,
 }) {
+  const buttonStyle = (value) => {
+    return {
+      color:
+        filter === value
+          ? theme.palette.primary.main
+          : theme.palette.text.disabled,
+      fontSize: "12px",
+      "&:hover": {
+        background: "transparent",
+        color: theme.palette.primary.main,
+      },
+      textTransform: "none",
+    };
+  };
+
   return (
     <Grid
       container
       sx={{
-        padding: "5px 10px 5px 10px",
-        display: "flex",
         alignItems: "center",
+        display: "flex",
         justifyContent: "space-between",
+        padding: "5px 10px 5px 10px",
       }}
     >
       <Typography sx={{ fontSize: "12px", color: theme.palette.text.disabled }}>
@@ -25,18 +39,7 @@ export default function Filter({
 
       <Box sx={{ display: "flex" }}>
         <Button
-          sx={{
-            textTransform: "none",
-            fontSize: "12px",
-            color:
-              filter === null
-                ? theme.palette.primary.main
-                : theme.palette.text.disabled,
-            "&:hover": {
-              background: "transparent",
-              color: theme.palette.primary.main,
-            },
-          }}
+          sx={buttonStyle(null)}
           onClick={() => {
             setFilter(null);
           }}
@@ -45,18 +48,7 @@ export default function Filter({
         </Button>
 
         <Button
-          sx={{
-            textTransform: "none",
-            fontSize: "12px",
-            color:
-              filter === false
-                ? theme.palette.primary.main
-                : theme.palette.text.disabled,
-            "&:hover": {
-              background: "transparent",
-              color: theme.palette.primary.main,
-            },
-          }}
+          sx={buttonStyle(false)}
           onClick={() => {
             setFilter(false);
           }}
@@ -65,18 +57,7 @@ export default function Filter({
         </Button>
 
         <Button
-          sx={{
-            textTransform: "none",
-            fontSize: "12px",
-            color:
-              filter === true
-                ? theme.palette.primary.main
-                : theme.palette.text.disabled,
-            "&:hover": {
-              background: "transparent",
-              color: theme.palette.primary.main,
-            },
-          }}
+          sx={buttonStyle(true)}
           onClick={() => {
             setFilter(true);
           }}
@@ -85,19 +66,7 @@ export default function Filter({
         </Button>
       </Box>
 
-      <Button
-        sx={{
-          textTransform: "none",
-          cursor: "pointer",
-          fontSize: "12px",
-          color: theme.palette.text.disabled,
-          "&:hover": {
-            background: "transparent",
-            color: theme.palette.primary.main,
-          },
-        }}
-        onClick={cleanTasks}
-      >
+      <Button sx={buttonStyle()} onClick={cleanTasks}>
         Limpiar completadas
       </Button>
     </Grid>

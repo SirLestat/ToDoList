@@ -7,30 +7,18 @@ import iconCheck from "./assets/icon-check.svg";
 import Filter from "./Filter";
 
 export default function TaskList({
-  setFilter,
-  filter,
-  tasks,
-  deleteTask,
   checkedTask,
-  themeMode,
+  cleanTasks,
+  deleteTask,
+  filter,
+  remainingTasks,
+  setFilter,
   setTasks,
+  showTask,
+  tasks,
+  theme,
+  themeMode,
 }) {
-  const theme = useTheme();
-
-  //funcion para aplicar filtros
-  const showTask =
-    filter === null
-      ? tasks
-      : tasks.filter((task) => (filter ? task.isComplete : !task.isComplete));
-
-  //Funcion para limpiar todas las tareas completadas
-  const cleanTasks = () => {
-    const cleanedTaskList = tasks.filter((task) => !task.isComplete);
-    setTasks(cleanedTaskList);
-  };
-  //Contador de tareas no completadas
-  const remainingTasks = showTask.filter((task) => !task.isComplete).length;
-
   return (
     /*Contenedor principal*/
     <Box
@@ -146,15 +134,15 @@ export default function TaskList({
         ))}
       </FormGroup>
       <Filter
-        theme={theme}
+        checkedTask={checkedTask}
         cleanTasks={cleanTasks}
-        tasks={tasks}
-        showTask={showTask}
         filter={filter}
+        remainingTasks={remainingTasks}
         setFilter={setFilter}
         setTasks={setTasks}
-        checkedTask={checkedTask}
-        remainingTasks={remainingTasks}
+        showTask={showTask}
+        tasks={tasks}
+        theme={theme}
       />
     </Box>
   );

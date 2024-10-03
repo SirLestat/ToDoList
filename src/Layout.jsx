@@ -46,7 +46,6 @@ export default function Layout({ onClickTheme, themeMode, theme }) {
       return [{ task: values.task, isComplete: false }, ...task];
     });
 
-    //localStorage.setItem("task", values.task);
   };
 
   const formik = useFormik({

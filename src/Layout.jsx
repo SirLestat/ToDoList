@@ -29,7 +29,7 @@ export default function Layout({ onClickTheme, themeMode, theme }) {
       .required("¡Ingresa una tarea valida!"),
   });
 
-  // Funcion para agregar tarea, validando que no se repita
+  // Funcion para agregar tarea, validando que no se repita.
   const addTask = (values) => {
     setTasks((task) => {
       const existTask = task.find(

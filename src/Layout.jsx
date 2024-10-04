@@ -45,7 +45,6 @@ export default function Layout({ onClickTheme, themeMode, theme }) {
 
       return [{ task: values.task, isComplete: false }, ...task];
     });
-
   };
 
   const formik = useFormik({
@@ -100,8 +99,8 @@ export default function Layout({ onClickTheme, themeMode, theme }) {
       <Box
         sx={{
           backgroundImage: themeMode
-            ? "url(/images/bg-desktop-dark.jpg)"
-            : "url(/images/bg-desktop-light.jpg)",
+            ? "url(images/bg-desktop-dark.jpg)"
+            : "url(images/bg-desktop-light.jpg)",
           height: "300px",
           backgroundSize: "cover",
           backgroundPosition: "center",

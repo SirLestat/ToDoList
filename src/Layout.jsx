@@ -14,6 +14,7 @@ import TaskList from "./TaskList";
 import { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import darkbg from "../public/images/dark-theme1.jpg";
 
 export default function Layout({ onClickTheme, themeMode, theme }) {
   const { palette } = useTheme();
@@ -99,7 +100,7 @@ export default function Layout({ onClickTheme, themeMode, theme }) {
       <Box
         sx={{
           backgroundImage: themeMode
-            ? "url(images/bg-desktop-dark.jpg)"
+            ? darkbg
             : "url(images/bg-desktop-light.jpg)",
           height: "300px",
           backgroundSize: "cover",

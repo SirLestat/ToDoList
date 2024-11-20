@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
-export default function Filter({
+export function TaskFilter({
   setFilter,
   cleanTasks,
   remainingTasks,
@@ -31,6 +31,7 @@ export default function Filter({
         display: "flex",
         justifyContent: "space-between",
         padding: "5px 10px 5px 10px",
+        
       }}
     >
       <Typography sx={{ fontSize: "12px", color: theme.palette.text.disabled }}>
@@ -38,30 +39,15 @@ export default function Filter({
       </Typography>
 
       <Box sx={{ display: "flex" }}>
-        <Button
-          sx={buttonStyle(null)}
-          onClick={() => {
-            setFilter(null);
-          }}
-        >
+        <Button sx={buttonStyle(null)} onClick={() => setFilter(null)}>
           Todas
         </Button>
 
-        <Button
-          sx={buttonStyle(false)}
-          onClick={() => {
-            setFilter(false);
-          }}
-        >
+        <Button sx={buttonStyle(false)} onClick={() => setFilter(false)}>
           Activas
         </Button>
 
-        <Button
-          sx={buttonStyle(true)}
-          onClick={() => {
-            setFilter(true);
-          }}
-        >
+        <Button sx={buttonStyle(true)} onClick={() => setFilter(true)}>
           Completadas
         </Button>
       </Box>

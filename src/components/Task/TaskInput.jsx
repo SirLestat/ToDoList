@@ -1,7 +1,6 @@
 import { TextField, useTheme } from "@mui/material";
 
-
-export default function Form({formik }) {
+export function TaskInput({ formik }) {
   const theme = useTheme();
   return (
     <div>
@@ -18,6 +17,7 @@ export default function Form({formik }) {
           error={formik.touched.task && Boolean(formik.errors.task)}
           helperText={formik.touched.task && formik.errors.task}
           sx={{
+            
             backgroundColor:
               theme.palette.mode === "dark"
                 ? theme.palette.background.paper

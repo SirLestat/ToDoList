@@ -11,7 +11,7 @@ export const useTasks = () => {
     setTasks(newTasks);
   };
 
-  //Funcion para marcar tareas como completadas
+  
   const checkedTask = (task) => {
     const updateList = tasks.map((item) =>
       item === task ? { ...item, isComplete: !item.isComplete } : item
@@ -19,7 +19,7 @@ export const useTasks = () => {
     setTasks(updateList);
   };
 
-  //funcion para aplicar filtros
+  
   const showTask = useMemo(
     () =>
       filter === null
@@ -28,13 +28,13 @@ export const useTasks = () => {
     [filter, tasks]
   );
 
-  //Funcion para limpiar todas las tareas completadas
+  
   const cleanTasks = () => {
     const cleanedTaskList = tasks.filter((task) => !task.isComplete);
     setTasks(cleanedTaskList);
   };
 
-  //Contador de tareas no completadas
+
   const remainingTasks = showTask.filter((task) => !task.isComplete).length;
 
   return {

@@ -26,16 +26,16 @@ export const TaskItem = ({
         },
       }}
     >
-      {/*Etiqueta del elemento */}
+      
       <FormControlLabel
         sx={{
           ml: "5px",
           flexGrow: 1,
         }}
         control={
-          /*Control del checkbox */
+          
           <Checkbox
-            /*Desabilita el efecto de toque predeterminado */
+            
             disableTouchRipple={true}
             sx={{
               "&:hover": {
